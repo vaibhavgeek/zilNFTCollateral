@@ -1,7 +1,7 @@
 scilla_version 0
 import IntUtils
 
-library DecentralisedIndex
+library CollataralIndex
 
 let zero = Uint128 0
 let one = Uint128 1
@@ -223,7 +223,7 @@ transition BuyTokens(tokens: Uint128)
 end
 
 transition releaseNFTtoartist(to: ByStr20, contract_address: ByStr20, token_id: Uint128)
-    CheckBlockTime;
+    CheckBlock;
     token_sender <- owners[_sender];
     match token_sender with 
         | Some value =>
@@ -249,7 +249,9 @@ transition releaseNFTtoartist(to: ByStr20, contract_address: ByStr20, token_id: 
 
 end
 
-transition releaseNFTto
+transition releaseNFTtoOwner(to: ByStr20, contract_address: ByStr20, token_id: Uint128)
+    CheckBlockTime;
+end
 
 transition TransferTokens(to: ByStr20, amount: Uint128)
   CheckBlock;
